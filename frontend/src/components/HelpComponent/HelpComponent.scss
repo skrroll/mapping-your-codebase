@@ -1,0 +1,12 @@
+.helpComponent {
+  width: 100%;
+  height: 100vh;
+  background-color: #383e47;
+  margin-top: 0;
+  .helpCard {
+    width: 40%;
+    align-self: center;
+    margin: auto;
+    text-align: left;
+  }
+}

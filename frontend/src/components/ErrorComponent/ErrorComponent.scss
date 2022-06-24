@@ -1,0 +1,17 @@
+.error-component {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+
+  .icon {
+    span {
+      width: 64px;
+      height: 64px;
+    }
+  }
+
+  h4 {
+    font-size: 22px;
+  }
+}

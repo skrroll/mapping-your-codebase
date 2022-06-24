@@ -1,0 +1,14 @@
+.DemoComponent {
+  .demoCard {
+    width: 40%;
+    align-self: center;
+    margin: auto;
+    margin-top: 5vh;
+    text-align: left;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+}
