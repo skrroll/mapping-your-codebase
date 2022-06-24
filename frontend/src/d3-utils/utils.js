@@ -6,6 +6,7 @@ function normalizeVal(val, max, min) {
   return 0.01 + (val - min) / (max - min);
 }
 
+// insert a file into the structure
 function insert(children = [], data, acc) {
   let head = data.group[0];
   let tail = data.group.slice(1);
@@ -33,6 +34,7 @@ function insert(children = [], data, acc) {
   return children;
 }
 
+// group files by paths
 function parse_paths(data) {
   const ret = data.map((d) => {
     return {

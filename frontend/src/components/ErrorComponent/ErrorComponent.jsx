@@ -1,6 +1,7 @@
 import "./ErrorComponent.scss";
 // import { Icon } from "@blueprintjs/core";
 
+// Error Component that is displayed when the visualisation cannot be built
 function ErrorComponent() {
   return (
     <div className="bp4-non-ideal-state error-component">

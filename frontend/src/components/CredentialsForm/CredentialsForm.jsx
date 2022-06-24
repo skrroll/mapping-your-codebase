@@ -13,6 +13,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import { startOfWeek, endOfWeek } from "date-fns";
 import { Card, Elevation, Button, Spinner } from "@blueprintjs/core";
 import "./CredentialsForm.scss";
+
+// Initial page of Metrico, used to get data from a user
 function CredentialsForm() {
   const accessToken = useRef();
   const repName = useRef();
@@ -37,10 +39,11 @@ function CredentialsForm() {
     };
     setLoading(true);
     get_repo_data(post_data).then((response) => {
+      // calculate accurate date for a user depending on a user's timezone
       post_data.startTime = startOfWeek(post_data.endTime, { weekStartsOn: 1 });
       post_data.endTime = endOfWeek(post_data.endTime, { weekStartsOn: 1 });
       post_data.accessToken = "";
-      //console.log(response)
+      // update data
       setRepoData(post_data);
       setData(response.data.metrics);
       setWeekList(response.data.weekList);

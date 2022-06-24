@@ -31,6 +31,7 @@ function FormChart(props) {
     setRepoData(props.repoData);
   }, []);
 
+  // metrics available to pick
   const options = [
     <option key="line_count" value="line_count">
       Added lines count
@@ -50,6 +51,7 @@ function FormChart(props) {
   ];
 
   const onButtonClick = (a) => {
+    // change flag to display visualisation
     setFlag(a);
   };
 
@@ -87,6 +89,7 @@ function FormChart(props) {
     });
   }, [index, activeList]);
 
+  // group the data according to path
   function parseData(data) {
     const ret = [];
 
@@ -98,6 +101,8 @@ function FormChart(props) {
         metrics: data[i],
       });
     }
+
+    // calculates min and max for normalization
     const minVal = Math.min(...ret.map((o) => o.value));
     const maxVal = Math.max(...ret.map((o) => o.value));
 

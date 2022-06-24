@@ -5,6 +5,7 @@ import { startOfWeek, endOfWeek } from "date-fns";
 import { get_repo_data } from "../../api/api";
 import FormChart from "../FormChart/FormChart";
 
+// Demo component used to perform a survey
 function DemoComponent() {
   const [data, setData] = useState([]);
   const [loaded, setLoaded] = useState(false);
@@ -14,6 +15,7 @@ function DemoComponent() {
   const [monthList, setMonthList] = useState([]);
 
   const parseData = () => {
+    // arbitrary data, just for demo, can be changed
     const post_data = {
       accessToken: "",
       repName: "twbs/bootstrap",
@@ -21,7 +23,7 @@ function DemoComponent() {
       startTime: new Date(2022, 1, 2),
       endTime: new Date(2022, 4, 21),
     };
-    //console.log(post_data)
+
     setLoading(true);
     get_repo_data(post_data).then((response) => {
       post_data.startTime = startOfWeek(post_data.endTime, { weekStartsOn: 1 });

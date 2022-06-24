@@ -15,6 +15,7 @@ const width = 820;
 function CirclePackingChart(data) {
   const dispatch = useDispatch();
 
+  // creates circle packing
   const pack = (data_2) =>
     d3.pack().size([width, height]).padding(3)(
       d3
@@ -25,6 +26,7 @@ function CirclePackingChart(data) {
 
   const ref = useD3(
     (svg) => {
+      // delete chart on re render
       d3.selectAll("g > *").remove();
       const root = pack(data.data);
       let focus = root;
@@ -41,6 +43,7 @@ function CirclePackingChart(data) {
 
       var node_rs = null;
 
+      // create circles for every file
       const node = svg
         .append("g")
         .selectAll("circle")
@@ -55,6 +58,7 @@ function CirclePackingChart(data) {
         .on("mouseout", mouseleave)
         .on("click", (event, d) => zoom(event, d));
 
+      // create labels for every circle
       const labels = svg
         .append("g")
         .style("font-family", "sans-serif")
@@ -72,8 +76,11 @@ function CirclePackingChart(data) {
       changeViewOnZoom([root.x, root.y, root.r * 2]);
 
       var node_rs = null;
+
+      // create array of radius, important for recalculating font while zooming
       createRArray();
 
+      // calculate font size depending on zoom
       function calcFontSize(d) {
         var r =
           node_rs !== null && node_rs[d.data.path] !== undefined
@@ -84,6 +91,7 @@ function CirclePackingChart(data) {
         return Math.min(Math.round(size), 48) + "px";
       }
 
+      // show text depending on zoom
       function calcText(d) {
         var r =
           node_rs !== null && node_rs[d.data.path] !== undefined
@@ -99,6 +107,7 @@ function CirclePackingChart(data) {
         return `translate(${(d.x - view[0]) * k},${(d.y - view[1]) * k})`;
       }
 
+      // changes view and transforms nodes and labels on zoom
       function changeViewOnZoom(v) {
         view = v;
 
@@ -110,6 +119,7 @@ function CirclePackingChart(data) {
         createRArray();
       }
 
+      // handles zoom event
       function zoom(event, d) {
         if (focus !== d) {
           event.stopPropagation();
@@ -150,6 +160,7 @@ function CirclePackingChart(data) {
           });
       }
 
+      // creates array of radius and applies calcFontSzie and calcText to labels
       function createRArray() {
         node_rs = Object.assign(
           {},
@@ -172,6 +183,7 @@ function CirclePackingChart(data) {
           .text(calcText);
       }
 
+      // mouseover behaviour 
       function mouseover(d) {
         d3.select(this)
           .attr("fill", (d) => (d.children ? "lightgrey" : color(d.data.color)))
@@ -180,6 +192,7 @@ function CirclePackingChart(data) {
           .attr("box-shadow", "5px 10px 8px #888888");
       }
 
+      // mouseleave behaviour
       function mouseleave(d) {
         d3.select(this)
           .attr("fill", (d) => (d.children ? "white" : color(d.data.color)))
