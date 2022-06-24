@@ -152,4 +152,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-*/config.cfg
+config.cfg
+
+*.db
